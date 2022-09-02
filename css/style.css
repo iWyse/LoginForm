@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: "Quicksand";
+  font-family: Quicksand;
   font-display: swap;
   src: url("../fonts/Quicksand-Bold.woff2") format("woff2"), url("../fonts/Quicksand-Bold.woff") format("woff");
   font-weight: 700;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: "Quicksand";
+  font-family: Quicksand;
   font-display: swap;
   src: url("../fonts/Quicksand-Medium.woff2") format("woff2"), url("../fonts/Quicksand-Medium.woff") format("woff");
   font-weight: 500;
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-  font-family: "Quicksand";
+  font-family: Quicksand;
   font-display: swap;
   src: url("../fonts/Quicksand-Regular.woff2") format("woff2"), url("../fonts/Quicksand-Regular.woff") format("woff");
   font-weight: 400;
@@ -369,7 +369,12 @@ body {
   content: "\e900";
 }
 
-.sign-form__login {
+.sign-form__button,
+.sign-form__subbutton {
+  cursor: pointer;
+}
+
+.sign-form__button {
   font-weight: 700;
   color: #fff;
   height: 43px;
@@ -379,7 +384,8 @@ body {
   margin: 0px 0px 24px 0px;
 }
 
-.sign-form__signin {
+.sign-form__subbutton {
+  border: transparent;
   text-decoration: underline;
 }
 

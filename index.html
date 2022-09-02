@@ -5,7 +5,7 @@
 	<title>Single sign-on</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220827140652">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220902190604">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -28,23 +28,28 @@
 				</div>
 				<div class="page-sign">
 					<div class="page-sign__wrapper">
-						<div class="page-sign-header">
-							<h2 class="page-sign__title">sign in</h2>
+						<div class="page-sign-body page-signUp">
+							<h2 class="page-sign__title">sign up</h2>
 							<h3 class="page-sign__subtitle">to access the portal</h3>
-							<form action="#" class="page-sign-form sign-form">
-								<div class="sign-form__email"><input type="email" placeholder="Enter Email"></div>
-								<div class="sign-form__password"><input type="password" placeholder="Enter Password"></div>
-								<button type="submit" class="sign-form__login">Login</button>
-								<button type="submit" class="sign-form__signin">Sign in</button>
-							</form>
+							<h3 class="page-sign__logged loggedTitle"></h3>
+							<div class="sign-form">
+								<div class="sign-form__email email"><input type="email" id="email" name="email" placeholder="Enter Email"></div>
+								<div class="sign-form__password password"><input type="password" id="password" name="password" placeholder="Enter Password"></div>
+								<input class="sign-form__button signUp" id="signUp" type="submit" name="signUp" value="Sign Up" />
+								<input type="submit" class="sign-form__button login" id="login" name="login" value="Login" />
+								<input type="submit" class="sign-form__button logout" id="logout" name="logout" value="logout" />
+								<button class="sign-form__subbutton goSignUp" type="submit">Sign Up</button>
+								<button class="sign-form__subbutton goSignIn" type="submit">Sign In</button>
+							</div>
 						</div>
+
 						<div class="page-sign__copy">Copyright © 2022 Commlink Info Tech Ltd. All rights reserved.</div>
 					</div>
 				</div>
 			</div>
 		</main>
 	</div>
-	<script src="js/app.min.js?_v=20220827140652"></script>
+	<script src="js/app.min.js?_v=20220902190604"></script>
 </body>
 
 </html>
