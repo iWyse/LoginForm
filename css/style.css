@@ -30,6 +30,9 @@
   font-style: normal;
 }
 
+.modal__close::before,
+.modal__content--alert::after,
+.modal__content--checked::after,
 .sign-form__email::before,
 .sign-form__password::before,
 [class*=_icon-]:before {
@@ -45,6 +48,38 @@
 
 [class*=_icon-]:before {
   display: block;
+}
+
+._icon-alert:before {
+  content: "\e902";
+}
+
+._icon-arrow-btn:before {
+  content: "\e903";
+}
+
+._icon-burger:before {
+  content: "\e904";
+}
+
+._icon-check:before {
+  content: "\e905";
+}
+
+._icon-close:before {
+  content: "\e906";
+}
+
+._icon-close-arrow-back:before {
+  content: "\e907";
+}
+
+._icon-database:before {
+  content: "\e908";
+}
+
+._icon-home:before {
+  content: "\e909";
 }
 
 ._icon-password:before {
@@ -312,6 +347,12 @@ body {
   margin: 0px 0px 27px 0px;
 }
 
+.page-sign__logged {
+  width: 100%;
+  font-size: 1.1875rem;
+  margin: 0px 0px 35px 0px;
+}
+
 .page-sign__copy {
   line-height: 1.7142857143;
   font-weight: 500;
@@ -337,8 +378,12 @@ body {
   -webkit-box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
   border-radius: 50px;
-  padding: 13px 55px;
+  padding: 13px 55px 13px 55px;
   margin-bottom: 10px;
+}
+
+.sign-form input[type=email] {
+  padding: 13px 25px 13px 55px;
 }
 
 .sign-form__email,
@@ -389,6 +434,46 @@ body {
   text-decoration: underline;
 }
 
+.users {
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FAFAFA;
+  z-index: 1221;
+}
+
+.emails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.125rem;
+  padding: 10px;
+}
+
+.emails ul {
+  padding: 10px;
+}
+
+.emails ul li {
+  margin-bottom: 8px;
+  list-style-type: disc;
+}
+
+.users__title {
+  font-size: 2rem;
+}
+
+.users__footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
 [class*=-ibg] {
   position: relative;
 }
@@ -415,6 +500,139 @@ a:focus-visible,
   transition: 0s;
   outline: 3px solid #036fc6;
   outline-offset: 2px;
+}
+
+#logout,
+#login,
+.loggedTitle,
+.showUsers,
+.goSignUp {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.modal.is-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal__content {
+  position: absolute;
+  margin: 0 auto;
+  top: -70px;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 70px;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 3px 0 rgba(60, 64, 67, 0.3), 0 6px 10px 4px rgba(60, 64, 67, 0.15);
+          box-shadow: 0 2px 3px 0 rgba(60, 64, 67, 0.3), 0 6px 10px 4px rgba(60, 64, 67, 0.15);
+}
+
+.modal__content--checked::after {
+  display: block;
+  content: "\e905";
+  font-size: 2.25rem;
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  z-index: 999999;
+  color: #07cc28;
+}
+
+.modal__content--alert::after {
+  display: block;
+  content: "\e902";
+  font-size: 2.25rem;
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  color: #f1e313;
+  z-index: 1;
+}
+
+.modal__close {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+.modal__close::before {
+  display: block;
+  content: "\e906";
+  font-size: 1.125rem;
+}
+
+.modal__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 120px;
+  font-size: 1.125rem;
+}
+
+@-webkit-keyframes loadAlert {
+  0% {
+    top: -70px;
+  }
+
+  100% {
+    top: 10px;
+  }
+}
+
+@keyframes loadAlert {
+  0% {
+    top: -70px;
+  }
+
+  100% {
+    top: 10px;
+  }
+}
+
+@-webkit-keyframes closeAlert {
+  0% {
+    top: 10px;
+  }
+
+  100% {
+    top: -70px;
+  }
+}
+
+@keyframes closeAlert {
+  0% {
+    top: 10px;
+  }
+
+  100% {
+    top: -70px;
+  }
 }
 
 @media (max-width: 47.99875em) {
@@ -483,12 +701,15 @@ a:focus-visible,
     height: 100%;
     width: 100%;
     max-width: 430px;
-    text-align: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 
   .page-sign__copy {
     padding: 10px 35px;
     font-size: 12px;
+    text-align: center;
   }
 
   .sign-form {
@@ -499,5 +720,17 @@ a:focus-visible,
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+}
+
+@media (max-width: 29.99875em) {
+  .modal__content {
+    width: 95%;
+    margin: 0 10px;
+  }
+
+  .modal__text {
+    padding: 15px;
+    font-size: 1rem;
   }
 }

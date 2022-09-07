@@ -5,14 +5,14 @@
 	<title>Single sign-on</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220902190604">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220907211113">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 	<div class="wrapper">
-		<main class="page">
+		<main class="page page-homepage">
 			<div class="page__container">
 				<div class="page-welcome">
 					<div class="page-welcome__wrapper">
@@ -33,23 +33,44 @@
 							<h3 class="page-sign__subtitle">to access the portal</h3>
 							<h3 class="page-sign__logged loggedTitle"></h3>
 							<div class="sign-form">
-								<div class="sign-form__email email"><input type="email" id="email" name="email" placeholder="Enter Email"></div>
-								<div class="sign-form__password password"><input type="password" id="password" name="password" placeholder="Enter Password"></div>
+								<div class="sign-form__email email"><input type="email" id="email" name="email" placeholder="Enter Email" maxlength="35"></div>
+								<div class="sign-form__password password"><input type="password" id="password" name="password" placeholder="Enter Password" maxlength="30"></div>
 								<input class="sign-form__button signUp" id="signUp" type="submit" name="signUp" value="Sign Up" />
 								<input type="submit" class="sign-form__button login" id="login" name="login" value="Login" />
 								<input type="submit" class="sign-form__button logout" id="logout" name="logout" value="logout" />
+								<input type="submit" class="sign-form__button showUsers" id="showUsers" name="showUsers" value="show all users" />
+								<!-- <input type="submit" class="sign-form__button deleteUser" id="deleteUser" name="deleteUser" value="Delete profile" /> -->
 								<button class="sign-form__subbutton goSignUp" type="submit">Sign Up</button>
 								<button class="sign-form__subbutton goSignIn" type="submit">Sign In</button>
 							</div>
 						</div>
-
 						<div class="page-sign__copy">Copyright © 2022 Commlink Info Tech Ltd. All rights reserved.</div>
 					</div>
 				</div>
+
 			</div>
-		</main>
+
 	</div>
-	<script src="js/app.min.js?_v=20220902190604"></script>
+
+	<div id="modal" aria-hidden="true" class="modal">
+		<div class="modal__wrapper">
+			<div class="modal__content">
+				<!-- <button data-close type="button" class="modal__close"></button> -->
+				<div class="modal__text">
+					Вы авторизировались!
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	</main>
+	</div>
+
+	<script src="js/app.min.js?_v=20220907211113"></script>
+
 </body>
+
+
 
 </html>
