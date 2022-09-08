@@ -264,7 +264,7 @@ body {
       -ms-transform: rotate(0deg);
           transform: rotate(0deg);
   bottom: 0;
-  right: -45px;
+  right: -40px;
   width: 100%;
   height: 100%;
 }
@@ -451,7 +451,6 @@ body {
 .sign-form__database {
   position: relative;
   width: 100%;
-  max-width: 365px;
 }
 
 .sign-form__database::after {
