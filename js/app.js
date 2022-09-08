@@ -1,4 +1,4 @@
-//! script.js
+// //! script.js
 // import { modalVisible, isError, isSuccess} from "./modal.js";
 // import { initializeApp } from "firebase/app";
 // import {getDatabase, set, update, get, ref, child } from "firebase/database";
@@ -249,8 +249,7 @@
 //     }
 //   });
 // }
-
-//! modal.js
+// //! modal.js
 // const modalWindow = document.querySelector(".modal"); //* Модальное окно
 // export const modalContent = document.querySelector(".modal__content"); //* Алерт
 // const isVisible = "is-visible"; //* попап активен

@@ -5,7 +5,7 @@
 	<title>Single sign-on</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220908214740">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220908223127">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -17,7 +17,7 @@
 				<div class="page-welcome">
 					<div class="page-welcome__wrapper">
 						<a href="#" class="page-logo">
-							<picture><source srcset="img/logo.webp" type="image/webp"><img class="page-logo__image" src="img/logo.png" alt="logo"></picture>
+							<img class="page-logo__image" src="img/logo.svg" alt="logo">
 							<h2 class="page-logo__title">Single sign-on (SSO)</h2>
 						</a>
 						<div class="page-welcome-header">
@@ -31,7 +31,7 @@
 						<div class="page-sign-body page-signUp">
 							<h2 class="page-sign__title">sign up</h2>
 							<h3 class="page-sign__subtitle">to access the portal</h3>
-							<h3 class="page-sign__logged loggedTitle"></h3>
+							<h3 class="page-sign__logged loggedTitle">Welcome user</h3>
 							<div class="sign-form">
 								<div class="sign-form__email email"><input type="email" id="email" name="email" placeholder="Enter Email" maxlength="35"></div>
 								<div class="sign-form__password password"><input type="password" id="password" name="password" placeholder="Enter Password" maxlength="30"></div>
@@ -47,11 +47,20 @@
 					</div>
 				</div>
 			</div>
-		</main>
 	</div>
-	
+	<div id="modal" aria-hidden="true" class="modal">
+		<div class="modal__wrapper">
+			<div class="modal__content">
+				<div class="modal__text">
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<script src="js/app.min.js?_v=20220908214740"></script>
+
+	</main>
+	</div>
+	<script src="js/app.min.js?_v=20220908223127"></script>
 
 </body>
 

@@ -255,7 +255,7 @@ body {
 .page-welcome::before {
   content: "";
   position: absolute;
-  background: url("../img/ex.svg");
+  background: url("../img/vector.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: 100% 100%;
@@ -753,7 +753,7 @@ a:focus-visible,
   .page-welcome {
     height: 60%;
     padding-top: 30px;
-    background: url("../img/vector1.svg");
+    background: url("../img/vectorHor.svg");
     background-repeat: no-repeat;
     background-color: transparent;
     background-size: contain;
