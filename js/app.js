@@ -12186,10 +12186,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */    function onAuthStateChanged(auth, nextOrObserver, error, completed) {
-        return index_esm2017_getModularInstance(auth).onAuthStateChanged(nextOrObserver, error, completed);
-    }
-    function signOut(auth) {
+ */    function signOut(auth) {
         return index_esm2017_getModularInstance(auth).signOut();
     }
     /**
@@ -14259,13 +14256,6 @@
                 const errorMessage = error.message;
                 modalVisible(errorMessage, isError());
             }));
-        }));
-        auth.currentUser;
-        onAuthStateChanged(auth, (user => {
-            if (user) {
-                user.uid;
-                user.email;
-            }
         }));
         showUsers.addEventListener("click", (() => {
             window.location.href += "users.html";
