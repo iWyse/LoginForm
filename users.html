@@ -5,7 +5,7 @@
 	<title>Database info</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220907211113">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220908211952">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -14,6 +14,11 @@
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__container">
+				<a href="#" class="page-logo page-logo-users">
+					<picture><source srcset="img/logo.webp" type="image/webp"><img class="page-logo__image" src="img/logo.png" alt="logo"></picture>
+					<h2 class="page-logo__title users-logo__title">Single sign-on (SSO)</h2>
+				</a>
+				<button class="page-users__button goHome" type="submit">Homepage</button>
 				<!-- signle menu -->
 
 				<!-- <div class="menu-body">
@@ -83,24 +88,12 @@
 		</header>
 		<main class="page page-database">
 			<div class="users">
-				<input type="submit" class="sign-form__button showUsers" name="showUsers" value="show all users" />
-				<a href="#" class="page-logo">
-					<picture><source srcset="img/logo.webp" type="image/webp"><img class="page-logo__image" src="img/logo.png" alt="logo"></picture>
-					<h2 class="page-logo__title">Single sign-on (SSO)</h2>
-				</a>
-				<button class="sign-form__button goHome" type="submit">Home</button>
 				<h1 class="users__title">Database users:</h1>
-				<input type="submit" class="sign-form__button showDB" id="showDB" name="showDB" value="show database" />
-				<div class="emails"></div>
-				<div class="page-sign__copy users__footer">Copyright © 2022 Commlink Info Tech Ltd. All rights reserved.</div>
+				<div class="users__emails emails"></div>
 			</div>
 		</main>
-		<footer class="footer">
-			<div class="footer__container">
-			</div>
-		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20220907211113"></script>
+	<script src="js/app.min.js?_v=20220908211952"></script>
 </body>
 
 </html>

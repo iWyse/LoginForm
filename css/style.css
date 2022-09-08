@@ -30,9 +30,11 @@
   font-style: normal;
 }
 
+.page-users__button::before,
 .modal__close::before,
 .modal__content--alert::after,
 .modal__content--checked::after,
+.sign-form__database::after,
 .sign-form__email::before,
 .sign-form__password::before,
 [class*=_icon-]:before {
@@ -250,7 +252,7 @@ body {
       align-content: space-between;
 }
 
-.page-welcome::after {
+.page-welcome::before {
   content: "";
   position: absolute;
   background: url("../img/ex.svg");
@@ -258,8 +260,11 @@ body {
   background-size: contain;
   background-position: 100% 100%;
   background-color: transparent;
-  top: 0;
-  right: 0;
+  -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+          transform: rotate(0deg);
+  bottom: 0;
+  right: -45px;
   width: 100%;
   height: 100%;
 }
@@ -309,6 +314,10 @@ body {
           align-items: end;
 }
 
+.page-sign-body {
+  width: 100%;
+}
+
 .page-sign__wrapper {
   margin: 0 auto;
   width: 420px;
@@ -323,6 +332,7 @@ body {
       flex-wrap: wrap;
   -ms-flex-line-pack: justify;
       align-content: space-between;
+  z-index: 100;
 }
 
 .page-sign-header {
@@ -349,7 +359,9 @@ body {
 
 .page-sign__logged {
   width: 100%;
+  text-align: center;
   font-size: 1.1875rem;
+  line-height: 1.2105263158;
   margin: 0px 0px 35px 0px;
 }
 
@@ -369,12 +381,13 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 365px;
-  text-align: center;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 .sign-form input {
   width: 100%;
-  max-width: 365px;
   -webkit-box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
           box-shadow: 0px 4px 23px rgba(0, 0, 0, 0.12);
   border-radius: 50px;
@@ -389,6 +402,7 @@ body {
 .sign-form__email,
 .sign-form__password {
   position: relative;
+  width: 100%;
 }
 
 .sign-form__email::before,
@@ -434,44 +448,75 @@ body {
   text-decoration: underline;
 }
 
-.users {
-  padding: 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
+.sign-form__database {
+  position: relative;
   width: 100%;
-  height: 100%;
+  max-width: 365px;
+}
+
+.sign-form__database::after {
+  content: "\e908";
+  font-size: 1.375rem;
+  position: absolute;
+  top: 11px;
+  right: 30px;
+  z-index: 10;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+}
+
+.users {
+  padding: 15px;
   background-color: #FAFAFA;
-  z-index: 1221;
-}
-
-.emails {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 1.125rem;
-  padding: 10px;
-}
-
-.emails ul {
-  padding: 10px;
-}
-
-.emails ul li {
-  margin-bottom: 8px;
-  list-style-type: disc;
 }
 
 .users__title {
   font-size: 2rem;
+  font-weight: 700;
 }
 
-.users__footer {
+.users__emails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+}
+
+@supports (font-size: clamp( 0.875rem , 0.7857142857rem  +  0.4464285714vw , 1.5rem )) {
+  .users__emails {
+    font-size: clamp( 0.875rem , 0.7857142857rem  +  0.4464285714vw , 1.5rem );
+  }
+}
+
+@supports not (font-size: clamp( 0.875rem , 0.7857142857rem  +  0.4464285714vw , 1.5rem )) {
+  .users__emails {
+    font-size: calc(0.875rem + 0.625 * (100vw - 20rem) / 140);
+  }
+}
+
+.users__emails ul {
+  padding: 10px;
+}
+
+.users__emails ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.users__emails ul li::after {
+  content: "";
+  display: block;
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
+  top: 2px;
+  left: -25px;
+  width: 20px;
+  height: 20px;
+  background: url("../img/firebase.svg") center/cover no-repeat;
 }
 
 [class*=-ibg] {
@@ -505,7 +550,6 @@ a:focus-visible,
 #logout,
 #login,
 .loggedTitle,
-.showUsers,
 .goSignUp {
   display: none;
 }
@@ -519,7 +563,6 @@ a:focus-visible,
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 100;
 }
 
 .modal.is-visible {
@@ -635,6 +678,57 @@ a:focus-visible,
   }
 }
 
+.header__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #0E4375;
+  color: #fff;
+  padding: 0 15px;
+}
+
+.page-logo-users {
+  padding-bottom: 0;
+}
+
+.page-users__button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.1875rem;
+}
+
+.page-users__button::before {
+  content: "\e909";
+  font-size: 1.375rem;
+  position: absolute;
+  color: #fff;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 8px;
+  left: -44px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #0E4375;
+}
+
 @media (max-width: 47.99875em) {
   .page__container {
     -webkit-box-orient: vertical;
@@ -662,11 +756,12 @@ a:focus-visible,
     padding-top: 30px;
     background: url("../img/vector1.svg");
     background-repeat: no-repeat;
+    background-color: transparent;
     background-size: contain;
     background-position: 100% 100%;
   }
 
-  .page-welcome::after {
+  .page-welcome::before {
     display: none;
   }
 
@@ -695,12 +790,13 @@ a:focus-visible,
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    margin-top: -1px;
   }
 
   .page-sign__wrapper {
     height: 100%;
     width: 100%;
-    max-width: 430px;
+    max-width: 600px;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -714,16 +810,26 @@ a:focus-visible,
 
   .sign-form {
     width: 100%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 
   .sign-form input {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
 }
 
 @media (max-width: 29.99875em) {
+  .page-sign__logged {
+    font-size: 0.9375rem;
+  }
+
   .modal__content {
     width: 95%;
     margin: 0 10px;
@@ -731,6 +837,16 @@ a:focus-visible,
 
   .modal__text {
     padding: 15px;
-    font-size: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .users-logo__title {
+    display: none;
+  }
+}
+
+@media (max-height: 600px) {
+  .page-welcome::before {
+    right: -25px;
   }
 }
