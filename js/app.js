@@ -14235,7 +14235,7 @@
                         showUsers.addEventListener("click", (() => {
                             const user = auth.currentUser;
                             getUser().then((() => {
-                                user && formAuth.classList.contains("logged") ? window.location.replace("users.html") : (0, 
+                                user && formAuth.classList.contains("logged") ? window.location.replace("LoginForm/users.html") : (0, 
                                 _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need to login", (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
                             })).catch((error => {
                                 (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need to login", (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
