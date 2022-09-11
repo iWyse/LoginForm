@@ -14068,6 +14068,7 @@
                         const loggedTitle = document.querySelector(".loggedTitle");
                         const authTitle = document.querySelector(".page-sign__title");
                         let validRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+                        let validPass = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
                         function accountIsRegistred() {
                             signUp.style.display = "none";
                             goSignIn.style.display = "none";
@@ -14126,58 +14127,46 @@
                             e.preventDefault();
                             let email = document.getElementById("email").value;
                             let password = document.getElementById("password").value;
-                            if (formAuth.classList.contains("registration")) {
-                                checkPassword(password);
-                                function checkPassword(password) {
-                                    const beginWithoutDigit = /^\D.*$/;
-                                    const withoutSpecialChars = /^[^-() /]*$/;
-                                    const containsLetters = /^.*[a-zA-Z]+.*$/;
-                                    const minimum8Chars = /^.{8,}$/;
-                                    const withoutSpaces = /^[\S]$/;
-                                    if (beginWithoutDigit.test(password) && withoutSpecialChars.test(password) && containsLetters.test(password) && minimum8Chars.test(password) && withoutSpaces.test(password)) console.log(password); else (0, 
-                                    _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(_modal_js__WEBPACK_IMPORTED_MODULE_0__.dH, (0, 
-                                    _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                            if (formAuth.classList.contains("registration")) if (email.match(validRegex) && password.match(validPass)) (0, 
+                            firebase_auth__WEBPACK_IMPORTED_MODULE_3__.Xb)(auth, email, password).then((userCredential => {
+                                const user = userCredential.user;
+                                (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.t8)((0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.iH)(database, "users/" + user.uid), {
+                                    email,
+                                    password
+                                }), (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Created " + email, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
+                                accountIsRegistred();
+                                document.getElementById("password").value = "";
+                            })).catch((error => {
+                                let errorCode = error.code;
+                                let errorMessage = error.message;
+                                switch (errorCode) {
+                                  case "auth/email-already-in-use":
+                                    errorMessage = "Email already in use";
+                                    break;
+
+                                  case "auth/weak-password":
+                                    errorMessage = "Password should be at least 6 characters";
+                                    break;
+
+                                  case "auth/internal-error":
+                                    errorMessage = _modal_js__WEBPACK_IMPORTED_MODULE_0__.dH;
+                                    break;
+
+                                  case "auth/invalid-email":
+                                    errorMessage = "Invalid email or password";
+                                    break;
+
+                                  case "auth/missing-email":
+                                    errorMessage = "Missing email";
+                                    break;
+
+                                  default:
+                                    error.code;
+                                    break;
                                 }
-                                if (email.match(validRegex)) (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.Xb)(auth, email, password).then((userCredential => {
-                                    const user = userCredential.user;
-                                    (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.t8)((0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.iH)(database, "users/" + user.uid), {
-                                        email,
-                                        password
-                                    }), (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Created " + email, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
-                                    accountIsRegistred();
-                                    document.getElementById("password").value = "";
-                                })).catch((error => {
-                                    let errorCode = error.code;
-                                    let errorMessage = error.message;
-                                    switch (errorCode) {
-                                      case "auth/email-already-in-use":
-                                        errorMessage = "Email already in use";
-                                        break;
-
-                                      case "auth/weak-password":
-                                        errorMessage = "Password should be at least 6 characters";
-                                        break;
-
-                                      case "auth/internal-error":
-                                        errorMessage = _modal_js__WEBPACK_IMPORTED_MODULE_0__.dH;
-                                        break;
-
-                                      case "auth/invalid-email":
-                                        errorMessage = "Invalid email or password";
-                                        break;
-
-                                      case "auth/missing-email":
-                                        errorMessage = "Missing email";
-                                        break;
-
-                                      default:
-                                        error.code;
-                                        break;
-                                    }
-                                    (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(errorMessage, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
-                                })); else (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(_modal_js__WEBPACK_IMPORTED_MODULE_0__.dH, (0, 
-                                _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
-                            } else if (formAuth.classList.contains("authentication")) {
+                                (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(errorMessage, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                            })); else (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(_modal_js__WEBPACK_IMPORTED_MODULE_0__.dH, (0, 
+                            _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)()); else if (formAuth.classList.contains("authentication")) {
                                 let email = document.getElementById("email").value;
                                 let password = document.getElementById("password").value;
                                 (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.e5)(auth, email, password).then((userCredential => {
@@ -14246,7 +14235,7 @@
                         showUsers.addEventListener("click", (() => {
                             const user = auth.currentUser;
                             getUser().then((() => {
-                                user && formAuth.classList.contains("logged") ? window.location.replace("users.html") : (0, 
+                                user && formAuth.classList.contains("logged") ? window.location.replace("/users.html") : (0, 
                                 _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need to login", (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
                             })).catch((error => {
                                 (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need to login", (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
