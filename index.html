@@ -5,7 +5,7 @@
 	<title>Single sign-on</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220908223127">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220911210218">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -32,31 +32,38 @@
 							<h2 class="page-sign__title">sign up</h2>
 							<h3 class="page-sign__subtitle">to access the portal</h3>
 							<h3 class="page-sign__logged loggedTitle">Welcome user</h3>
-							<div class="sign-form">
-								<div class="sign-form__email email"><input type="email" id="email" name="email" placeholder="Enter Email" maxlength="35"></div>
+							<form class="sign-form registration">
+								<div class="sign-form__email email"><input tabindex="0" type="email" id="email" name="email" placeholder="Enter Email" maxlength="35"></div>
 								<div class="sign-form__password password"><input type="password" id="password" name="password" placeholder="Enter Password" maxlength="30"></div>
-								<input class="sign-form__button signUp" id="signUp" type="submit" name="signUp" value="Sign Up" />
-								<input type="submit" class="sign-form__button login" id="login" name="login" value="Login" />
-								<input type="submit" class="sign-form__button logout" id="logout" name="logout" value="logout" />
-								<div class="sign-form__database showUsers"><input type="submit" class="sign-form__button " id="showUsers" name="showUsers" value="show all users" /></div>
-								<button class="sign-form__subbutton goSignUp" type="submit">Sign Up</button>
-								<button class="sign-form__subbutton goSignIn" type="submit">Sign In</button>
-							</div>
+								<button type="submit" class="sign-form__button signUp" id="signUp" name="signUp">Sign Up</button>
+								<button type="submit" class="sign-form__button login" id="login" name="login">Login</button>
+								<button type="button" class="sign-form__button logout" id="logout" name="logout">logout</button>
+								<div class="sign-form__database showUsers"><button type="button" class="sign-form__button" id="showUsers" name="showUsers">show all users</button></div>
+								<button class="sign-form__subbutton goSignUp" type="button">Sign Up</button>
+								<button class="sign-form__subbutton goSignIn" type="button">Sign In</button>
+								</d>
 						</div>
 						<div class="page-sign__copy">Copyright © 2022 Commlink Info Tech Ltd. All rights reserved.</div>
 					</div>
 				</div>
 			</div>
-		<div id="modal" aria-hidden="true" class="modal">
-			<div class="modal__wrapper">
-				<div class="modal__content">
-					<div class="modal__text">
-					</div>
+	</div>
+	<div id="modal" aria-hidden="true" class="modal">
+		<div class="modal__wrapper">
+			<div class="modal__content">
+				<div class="modal__text">
 				</div>
 			</div>
-			</div>
-		</main>
+		</div>
 	</div>
-<script src="js/app.min.js?_v=20220908223127"></script>
+
+
+	</main>
+	</div>
+	<script src="js/app.min.js?_v=20220911210218"></script>
+
 </body>
+
+
+
 </html>

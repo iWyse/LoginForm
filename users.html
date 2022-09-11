@@ -5,7 +5,7 @@
 	<title>Database info</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20220908223127">
+	<link rel="stylesheet" href="css/style.min.css?_v=20220911210218">
 	<link rel="shortcut icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,7 +15,7 @@
 		<header class="header">
 			<div class="header__container">
 				<a href="#" class="page-logo page-logo-users">
-					<picture><source srcset="img/logo.webp" type="image/webp"><img class="page-logo__image" src="img/logo.png" alt="logo"></picture>
+					<img class="page-logo__image" src="img/logo.svg" alt="logo">
 					<h2 class="page-logo__title users-logo__title">Single sign-on (SSO)</h2>
 				</a>
 				<button class="page-users__button goHome" type="submit">Homepage</button>
@@ -26,9 +26,19 @@
 				<h1 class="users__title">Database users:</h1>
 				<div class="users__emails emails"></div>
 			</div>
+			<div id="modal" aria-hidden="true" class="modal">
+				<div class="modal__wrapper">
+					<div class="modal__content">
+						<div class="modal__text">
+						</div>
+					</div>
+				</div>
+			</div>
+
+
 		</main>
 	</div>
-	<script src="js/app.min.js?_v=20220908223127"></script>
+	<script src="js/app.min.js?_v=20220911210218"></script>
 </body>
 
 </html>

@@ -434,13 +434,14 @@ body {
 }
 
 .sign-form__button {
+  width: 100%;
   font-weight: 700;
   color: #fff;
   height: 43px;
   background: -o-linear-gradient(203.94deg, #3AB6DA 0%, #0F9CD5 96.92%);
   background: linear-gradient(246.06deg, #3AB6DA 0%, #0F9CD5 96.92%);
   border-radius: 25px;
-  margin: 0px 0px 24px 0px;
+  margin: 0px 0px 8px 0px;
 }
 
 .sign-form__subbutton {
@@ -449,6 +450,7 @@ body {
 }
 
 .sign-form__database {
+  display: none;
   position: relative;
   width: 100%;
 }
@@ -463,6 +465,10 @@ body {
   color: #fff;
   width: 20px;
   height: 20px;
+}
+
+.signUp {
+  display: block;
 }
 
 .users {
@@ -557,7 +563,6 @@ a:focus-visible,
   position: absolute;
   display: none;
   width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   bottom: 0;
@@ -593,6 +598,7 @@ a:focus-visible,
   border-radius: 10px;
   -webkit-box-shadow: 0 2px 3px 0 rgba(60, 64, 67, 0.3), 0 6px 10px 4px rgba(60, 64, 67, 0.15);
           box-shadow: 0 2px 3px 0 rgba(60, 64, 67, 0.3), 0 6px 10px 4px rgba(60, 64, 67, 0.15);
+  z-index: 1000;
 }
 
 .modal__content--checked::after {
@@ -752,7 +758,7 @@ a:focus-visible,
 
   .page-welcome {
     height: 60%;
-    padding-top: 30px;
+    padding-top: 10px;
     background: url("../img/vectorHor.svg");
     background-repeat: no-repeat;
     background-color: transparent;
