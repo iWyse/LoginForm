@@ -31,7 +31,6 @@
 }
 
 .page-users__button::before,
-.modal__close::before,
 .modal__content--alert::after,
 .modal__content--checked::after,
 .sign-form__database::after,
@@ -576,7 +575,7 @@ a:focus-visible,
 }
 
 .modal__content {
-  position: absolute;
+  position: fixed;
   margin: 0 auto;
   top: -70px;
   left: 0;
@@ -621,18 +620,6 @@ a:focus-visible,
   right: 15px;
   color: #f1e313;
   z-index: 1;
-}
-
-.modal__close {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-}
-
-.modal__close::before {
-  display: block;
-  content: "\e906";
-  font-size: 1.125rem;
 }
 
 .modal__text {
@@ -841,7 +828,9 @@ a:focus-visible,
   }
 
   .modal__text {
-    padding: 15px;
+    line-height: 1.4285714286;
+    padding: 55px;
+    text-align: center;
     font-size: 0.875rem;
   }
 

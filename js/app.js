@@ -1,341 +1,3 @@
-//* script.js
-// import { modalVisible, isError, isSuccess, errorValidate} from "./modal.js";
-// import { initializeApp } from "firebase/app";
-// import { getDatabase, set, update, get, ref, child } from "firebase/database";
-// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, } from "firebase/auth";
-
-// const firebaseConfig = {
-//   apiKey: process.env.FIREBASE_API_KEY,
-//   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-//   databaseURL: process.env.FIREBASE_DATABASE_URL,
-//   projectId: process.env.FIREBASE_PROJECT_ID,
-//   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-//   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-//   appId: process.env.FIREBASE_APP_ID,
-// };
-
-// const app = initializeApp(firebaseConfig);
-// const database = getDatabase(app);
-// const auth = getAuth();
-// export const db = getDatabase();
-
-// export let allUsersEmail, UsersAccounts = [];
-// export const emails = document.querySelector(".emails"); //* Секция рендера Базы данных
-// export const user = await getUser();
-// signOut(auth);
-
-// //* получаем авторизированного юзера
-// function getUser() {
-//   return new Promise((resolve, _) => {
-//     const unsub = onAuthStateChanged(auth, (user) => {
-//       unsub(); 
-//       return resolve(user)
-//     })
-//   })
-// }
-
-// if (document.querySelector(".page-homepage")) {
-//   const formAuth = document.querySelector(".sign-form"); //* Блок формы
-//   const signUp = document.getElementById("signUp"); //* РЕГИСТРАЦИЯ
-//   const login = document.getElementById("login"); //* АВТОРИЗАЦИЯ
-//   const logout = document.getElementById("logout"); //* ВЫХОД ИЗ АВТОРИЗАЦИИ
-//   const goSignUp = document.querySelector(".goSignUp"); //* Переход к форме РЕГИСТРАЦИИ
-//   const goSignIn = document.querySelector(".goSignIn"); //* Переход к форме АВТОРИЗАЦИИ
-//   const showUsers = document.querySelector(".showUsers"); //* Кнопка перехода на другую страницу
-//   const loggedTitle = document.querySelector(".loggedTitle"); //* Показать сообщение юзеру
-//   const authTitle = document.querySelector(".page-sign__title"); //* Показать сообщение юзеру
-//   let validRegex =
-//     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-//   let validPass=  /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
- 
-//     //* юзер зарегистрировался
-//   function accountIsRegistred() {
-//     signUp.style.display = "none";
-//     goSignIn.style.display = "none";
-//     login.style.display = "block";
-//     goSignUp.style.display = "block";
-//     authTitle.innerHTML = "sign in";
-//     formAuth.classList.remove("registration");
-//     formAuth.classList.add("authentication");
-//   }
-
-//   //* юзер авторизировался
-//   function logged() {
-//     let email = document.querySelector(".sign-form__email");
-//     let password = document.querySelector(".sign-form__password");
-//     login.style.display = "none";
-//     signUp.style.display = "none";
-//     goSignIn.style.display = "none";
-//     goSignUp.style.display = "none";
-//     email.style.display = "none";
-//     password.style.display = "none";
-//     logout.style.display = "block";
-//     loggedTitle.style.display = "block";
-//     showUsers.style.display = "block";
-//     formAuth.classList.add("logged");
-//     formAuth.classList.remove("authentication");
-//     formAuth.classList.remove("registration");
-//     // WatchToUser();
-//   }
-
-//   //* переход к регистрации
-//   function registration() {
-//     goSignUp.style.display = "none";
-//     logout.style.display = "none";
-//     login.style.display = "none";
-//     signUp.style.display = "block";
-//     goSignIn.style.display = "block";
-//     authTitle.innerHTML = "sign up";
-//     formAuth.classList.remove("authentication");
-//     formAuth.classList.add("registration");
-//   }
-
-//   //* переход к авторизации
-//   function goLogin() {
-//     let email = document.querySelector(".sign-form__email");
-//     let password = document.querySelector(".sign-form__password");
-//     accountIsRegistred();
-//     logout.style.display = "none";
-//     showUsers.style.display = "none";
-//     email.style.display = "block";
-//     password.style.display = "block";
-//     loggedTitle.style.display = "none";
-//     formAuth.classList.add("authentication");
-//     formAuth.classList.remove("logged");
-//   }
-
-//   //* Переход на момент авторизации
-//   goSignIn.addEventListener("click", (e) => {
-//     accountIsRegistred(signUp);
-//     goSignIn.style.display = "none";
-//   });
-
-//   //* Переход на момент регистрации
-//   goSignUp.addEventListener("click", (e) => {
-//     registration();
-//   });
-
-//   formAuth.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     let email = document.getElementById("email").value;
-//     let password = document.getElementById("password").value;
-//     if (formAuth.classList.contains("registration")) {
-//       //* Валидация EMAIL
-//       if (email.match(validRegex) && password.match(validPass)) {
-//         createUserWithEmailAndPassword(auth, email, password)
-//           .then((userCredential) => {
-//             const user = userCredential.user;
-//             set(ref(database, "users/" + user.uid), {
-//               email: email,
-//               password: password,
-//             }),
-//               modalVisible("Created " + email, isSuccess());
-//             accountIsRegistred();
-//             document.getElementById("password").value = "";
-//           })
-//           .catch((error) => {
-//             let errorCode = error.code;
-//             let errorMessage = error.message;
-//             switch (errorCode) {
-//               case "auth/email-already-in-use":
-//                 errorMessage = "Email already in use";
-//                 break;
-//               case "auth/weak-password":
-//                 errorMessage = "Password should be at least 6 characters";
-//                 break;
-//               case "auth/internal-error":
-//                 errorMessage = errorValidate;
-//                 break;
-//               case "auth/invalid-email":
-//                   errorMessage = "Invalid email or password";
-//                 break;
-//               case "auth/missing-email":
-//                   errorMessage = "Missing email";
-//                 break;
-//               default:
-//                error.code;
-//                 break;
-//             }
-//             modalVisible(errorMessage, isError());
-//           });
-//       } else {
-//         modalVisible(errorValidate, isError());
-//       }
-//     } else if (formAuth.classList.contains("authentication")) {
-//       let email = document.getElementById("email").value;
-//       let password = document.getElementById("password").value;
-//       signInWithEmailAndPassword(auth, email, password)
-//         .then((userCredential) => {
-//           const user = userCredential.user;
-//           const dt = new Date();
-//           update(ref(database, "users/" + user.uid), {
-//             last_login: dt,
-//           });
-//           modalVisible("Loged in! " + email, isSuccess());
-//           logged();
-//           createEmails();
-//           loggedTitle.innerHTML = ` You are logged as  <b>${email}</b>`;
-//         })
-//         .catch((error) => {
-//           let errorCode = error.code;
-//           let errorMessage = error.message;
-//           console.log(errorCode);
-//           console.log(errorMessage);
-//           switch (errorCode) {
-//             case "auth/user-not-found":
-//               errorMessage = "User not found";
-//               break;
-//             case "auth/weak-password":
-//               errorMessage = "Password should be at least 6 characters";
-//               break;
-//             case "auth/internal-error":
-//               errorMessage = errorValidate;
-//               break;
-//             case "auth/invalid-email":
-//                 errorMessage = "Invalid email or password";
-//               break;
-//             case "auth/missing-email":
-//                 errorMessage = "Missing email";
-//               break;
-//             case "auth/wrong-password":
-//                 errorMessage = "Wrong password";
-//               break;
-//             case "auth/too-many-requests":
-//                 errorMessage = "Too many requests";
-//               break;
-//             default:
-//              error.code;
-//               break;
-//           }
-//           modalVisible(errorMessage, isError());
-//         });
-//     } else {
-//       modalVisible("Auth error");
-//     }
-//   });
-// //* Наблюдатель
-// //   const user = auth.currentUser;
-// //   function WatchToUser() {
-// //     onAuthStateChanged(auth, (user) => {
-// //       if (user) {
-// //         authUser = user.email;
-// //       } else {
-// //       }
-// //     });
-// //  }
-
-//   //* Ивент выхода из авторизации
-//   logout.addEventListener("click", (e) => {
-//     document.getElementById("password").value = "";
-//     signOut(auth)
-//       .then(() => {
-//         modalVisible("logged out", isSuccess()); //* Вторым параметром на алерт вышаю либо ошибку, либо "чек" если все хорошо
-//         goLogin();
-//       })
-//       .catch((error) => {
-//         const errorCode = error.code;
-//         const errorMessage = error.message;
-//         modalVisible(errorMessage, isError());
-//       });
-//   });
- 
-//   //* Переход на страницу с БД
-//   showUsers.addEventListener('click',() => {
-//     const user = auth.currentUser;
-//     getUser()
-//     .then(() => {
-//       (user && formAuth.classList.contains('logged')) ? window.location.replace("LoginForm/users.html") : modalVisible("Need to login", isError());
-//     }).catch((error) => {
-//       modalVisible("Need to login", isError());
-//     });
-//   })
-
-// }
-
-
-// //* Проверка на авторизацию пользователя для просмотра БД
-// if(document.querySelector(".page-database")) {
-//   if (!user) {
-//     window.location.replace("index.html");
-//   } 
-//   else {
-//     modalVisible("Welcome to database", isSuccess());
-// }  
-// }
-
-// //* Достаем адреса пользователей из БД, преобразуем массив для дальнейшего рендера
-// export function createEmails() {
-//   const dbRef = ref(getDatabase());
-//   get(child(dbRef, `users/`)).then((snapshot) => {
-//     snapshot.forEach((child) => {
-//       child.val().email;
-//       allUsersEmail += " " + child.val().email;
-//       UsersAccounts = allUsersEmail.trim().split(" ");
-//     });
-//   });
-// }
-
-// //* Берем с базы адреса пользователей, сохраняем в переменную
-// export function getEmails() {
-//   const ul = document.createElement("ul");
-//   for (let item in UsersAccounts) {
-//     let li = document.createElement("li");
-//     li.innerText = UsersAccounts[item];
-//     ul.appendChild(li);
-//   }
-//   emails.append(ul);
-// }
-
-// //* Рендерим базу данных и отрисовываем
-// if (document.querySelector(".page-database")) {
-//   createEmails();
-//   setTimeout(() => {
-//     getEmails();
-//   }, 2000);
-
-//   const goHome = document.querySelector(".goHome"); //* Возврат на главную страницу
-
-//   //* Кнопка выхода из базы данных
-//   goHome.addEventListener("click", () => {
-//     // window.history.back();
-//     window.location.replace("index.html");
-//     allUsersEmail = [];
-//     while (emails.firstChild) {
-//       emails.removeChild(emails.firstChild);
-//     }
-//   });
-// }
-//* modal.js
-// const modalWindow = document.querySelector(".modal"); //* Модальное окно
-// const modalContent = document.querySelector(".modal__content"); //* Алерт
-// const isVisible = "is-visible"; //* попап активен
-// let modalMesssage = document.querySelector(".modal__text");
-// export const errorValidate = "Invalid email or password";
-// // let windowHeight = window.innerHeight;
-// export function modalVisible(message) {
-//   modalWindow.classList.add(isVisible);
-//   modalContent.style.animation = "loadAlert .2s linear 0s 1 forwards";
-//   modalMesssage.innerHTML = message;
-//   setTimeout(() => {
-//     modalContent.style.animation = "closeAlert .125s linear 0s 1 forwards";
-//   }, 1700);
-//   setTimeout(() => {
-//     modalWindow.classList.remove(isVisible);
-//   }, 2000);
-// }
-
-// export function isError() {
-//   modalContent.classList.add("modal__content--alert");
-//   setTimeout(() => {
-//     modalContent.classList.remove("modal__content--alert");
-//   }, 2000);
-// }
-// export function isSuccess() {
-//   modalContent.classList.add("modal__content--checked");
-//   setTimeout(() => {
-//     modalContent.classList.remove("modal__content--checked");
-//   }, 2000);
-// }
 (() => {
     "use strict";
     var __webpack_modules__ = {
@@ -14325,14 +13987,12 @@
             __webpack_require__.d(__webpack_exports__, {
                 VZ: () => isError,
                 d6: () => isSuccess,
-                dH: () => errorValidate,
                 eH: () => modalVisible
             });
             const modalWindow = document.querySelector(".modal");
             const modalContent = document.querySelector(".modal__content");
             const isVisible = "is-visible";
             let modalMesssage = document.querySelector(".modal__text");
-            const errorValidate = "Invalid email or password";
             function modalVisible(message) {
                 modalWindow.classList.add(isVisible);
                 modalContent.style.animation = "loadAlert .2s linear 0s 1 forwards";
@@ -14383,7 +14043,7 @@
                     const database = (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.N8)(app);
                     const auth = (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.v0)();
                     (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.N8)();
-                    let allUsersEmail, UsersAccounts = [];
+                    let allUsersEmail = [], UsersAccounts = [];
                     const emails = document.querySelector(".emails");
                     const user = await getUser();
                     (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.w7)(auth);
@@ -14406,7 +14066,7 @@
                         const loggedTitle = document.querySelector(".loggedTitle");
                         const authTitle = document.querySelector(".page-sign__title");
                         let validRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-                        let validPass = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                        let validPass = /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/g;
                         function accountIsRegistred() {
                             signUp.style.display = "none";
                             goSignIn.style.display = "none";
@@ -14465,46 +14125,66 @@
                             e.preventDefault();
                             let email = document.getElementById("email").value;
                             let password = document.getElementById("password").value;
-                            if (formAuth.classList.contains("registration")) if (email.match(validRegex) && password.match(validPass)) (0, 
-                            firebase_auth__WEBPACK_IMPORTED_MODULE_3__.Xb)(auth, email, password).then((userCredential => {
-                                const user = userCredential.user;
-                                (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.t8)((0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.iH)(database, "users/" + user.uid), {
-                                    email,
-                                    password
-                                }), (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Created " + email, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
-                                accountIsRegistred();
-                                document.getElementById("password").value = "";
-                            })).catch((error => {
-                                let errorCode = error.code;
-                                let errorMessage = error.message;
-                                switch (errorCode) {
-                                  case "auth/email-already-in-use":
-                                    errorMessage = "Email already in use";
-                                    break;
-
-                                  case "auth/weak-password":
-                                    errorMessage = "Password should be at least 6 characters";
-                                    break;
-
-                                  case "auth/internal-error":
-                                    errorMessage = _modal_js__WEBPACK_IMPORTED_MODULE_0__.dH;
-                                    break;
-
-                                  case "auth/invalid-email":
-                                    errorMessage = "Invalid email or password";
-                                    break;
-
-                                  case "auth/missing-email":
-                                    errorMessage = "Missing email";
-                                    break;
-
-                                  default:
-                                    error.code;
-                                    break;
+                            if (formAuth.classList.contains("registration")) {
+                                const hasNumber = /(?=.*[0-9])/;
+                                const hasLittleChar = /(?=.*[a-z])/;
+                                const hasBigChar = /(?=.*[A-Z])/;
+                                const minimalString = /[0-9a-zA-Z]{6,20}/;
+                                function checkPassword(password) {
+                                    if (email) {
+                                        password.match(hasNumber) ? password.match(hasNumber) : (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need at least one digit", (0, 
+                                        _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                                        password.match(hasLittleChar) ? password.match(hasLittleChar) : (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need at least one small letter", (0, 
+                                        _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                                        password.match(hasBigChar) ? password.match(hasBigChar) : (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Need at least one big letter", (0, 
+                                        _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                                        password.match(minimalString) ? password.match(minimalString) : (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Password must contain at least 6 characters", (0, 
+                                        _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                                    } else (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("You must enter email and password", (0, 
+                                    _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
                                 }
-                                (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(errorMessage, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
-                            })); else (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(_modal_js__WEBPACK_IMPORTED_MODULE_0__.dH, (0, 
-                            _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)()); else if (formAuth.classList.contains("authentication")) {
+                                checkPassword(password);
+                                if (email.match(validRegex) && password.match(validPass)) (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.Xb)(auth, email, password).then((userCredential => {
+                                    const user = userCredential.user;
+                                    (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.t8)((0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.iH)(database, "users/" + user.uid), {
+                                        email,
+                                        password
+                                    }), (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Created " + email, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
+                                    accountIsRegistred();
+                                    document.getElementById("password").value = "";
+                                })).catch((error => {
+                                    let errorCode = error.code;
+                                    let errorMessage = error.message;
+                                    console.log(errorCode);
+                                    console.log(errorMessage);
+                                    switch (errorCode) {
+                                      case "auth/email-already-in-use":
+                                        errorMessage = "Email already in use";
+                                        break;
+
+                                      case "auth/weak-password":
+                                        errorMessage = "Password should be at least 6 characters";
+                                        break;
+
+                                      case "auth/internal-error":
+                                        errorMessage = "Invalid email or password";
+                                        break;
+
+                                      case "auth/invalid-email":
+                                        errorMessage = "Invalid email";
+                                        break;
+
+                                      case "auth/missing-email":
+                                        errorMessage = "Missing email";
+                                        break;
+
+                                      default:
+                                        error.code;
+                                        break;
+                                    }
+                                    (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)(errorMessage, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.VZ)());
+                                }));
+                            } else if (formAuth.classList.contains("authentication")) {
                                 let email = document.getElementById("email").value;
                                 let password = document.getElementById("password").value;
                                 (0, firebase_auth__WEBPACK_IMPORTED_MODULE_3__.e5)(auth, email, password).then((userCredential => {
@@ -14515,7 +14195,6 @@
                                     });
                                     (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Loged in! " + email, (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
                                     logged();
-                                    createEmails();
                                     loggedTitle.innerHTML = ` You are logged as  <b>${email}</b>`;
                                 })).catch((error => {
                                     let errorCode = error.code;
@@ -14528,11 +14207,11 @@
                                         break;
 
                                       case "auth/weak-password":
-                                        errorMessage = "Password should be at least 6 characters";
+                                        errorMessage = "Password should be at least 8 characters";
                                         break;
 
                                       case "auth/internal-error":
-                                        errorMessage = _modal_js__WEBPACK_IMPORTED_MODULE_0__.dH;
+                                        errorMessage = "Invalid email or password";
                                         break;
 
                                       case "auth/invalid-email":
@@ -14580,8 +14259,7 @@
                             }));
                         }));
                     }
- //! PAGE-HOMEPAGE
-                                        if (document.querySelector(".page-database")) if (!user) window.location.replace("index.html"); else (0, 
+                    if (document.querySelector(".page-database")) if (!user) window.location.replace("index.html"); else (0, 
                     _modal_js__WEBPACK_IMPORTED_MODULE_0__.eH)("Welcome to database", (0, _modal_js__WEBPACK_IMPORTED_MODULE_0__.d6)());
                     function createEmails() {
                         const dbRef = (0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.iH)((0, firebase_database__WEBPACK_IMPORTED_MODULE_2__.N8)());
@@ -14589,6 +14267,7 @@
                             snapshot.forEach((child => {
                                 child.val().email;
                                 allUsersEmail += " " + child.val().email;
+                                console.log(allUsersEmail);
                                 UsersAccounts = allUsersEmail.trim().split(" ");
                             }));
                         }));
